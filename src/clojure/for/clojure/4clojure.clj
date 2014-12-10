@@ -14,7 +14,15 @@
                    current))
              (inc steps)))))
 
+;; 125
+(fn []
+  (let [lst ["(fn [] (let [lst "
+             "] (str (first lst) lst (last lst))))"]]
+    (str (first lst)
+         lst
+         (last lst))))
+
 
 (defn -main
   []
-  (println (number-maze-106 3 12)))
+  nil)
