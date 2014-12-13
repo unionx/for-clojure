@@ -68,6 +68,44 @@
                       (recur (assoc result-map [i j] min-v) (inc step-count))))))]
         (calc-fn nil 0)))))
 
+;; #89 Graph Tour
+(defn graph-tour [graph-vector]
+  nil)
+
+;; #119 Tic-Tac-Toe
+(defn tic-tac-toe [one-piece game-board]
+  (letfn [(win-game? [index]
+            (if (not= :e (get-in game-board index))
+              false
+              (let [new-board (assoc-in game-board index one-piece)
+                    test-index-list [[[0 0] [1 0] [2 0]]
+                                     [[0 1] [1 1] [2 1]]
+                                     [[0 2] [1 2] [2 2]]
+                                     [[0 0] [1 1] [2 2]]
+                                     [[0 2] [1 1] [2 0]]]
+                    test-lines (map (fn [line-index]
+                                      (map (fn [piece-index]
+                                             (get-in new-board piece-index))
+                                           line-index))
+                                    test-index-list)
+                    total-lines (remove #{'(:e :e :e)} (concat new-board test-lines))]
+                (some #(= 1 (count (set %))) total-lines))))]
+    (let [match-index (for [x (range 3)
+                            y (range 3)]
+                        (when (win-game? [x y]) [x y]))]
+      (set (filter (complement nil?) match-index)))))
+
+;; answer: #{}
+(tic-tac-toe :x [[:x :x :o]
+                 [:e :e :e]
+                 [:e :e :e]])
+
+;; answer: #{[2 2] [1 1]}
+(tic-tac-toe :o [[:x :x :o]
+                 [:o :e :o]
+                 [:x :e :e]])
+
+
 (defn -main
   []
   (println (levenshtein-distance-better "" "")))
