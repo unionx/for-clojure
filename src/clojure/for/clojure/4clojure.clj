@@ -105,6 +105,18 @@
                  [:o :e :o]
                  [:x :e :e]])
 
+;; not my answer
+;; crossword puzzle 111
+;; graph tour 89
+;; tree parenting 130
+;; Latin Square Slicing 152
+;; Analyze Reversi 124
+;; Squares Squared 138
+;; Love Triangle 127
+;; Veitch, Please! 140
+;; Language of a DFA 164
+
+
 
 (defn -main
   []
